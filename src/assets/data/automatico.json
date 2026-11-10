@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "nombre": "Horno",
+    "bloquesPorSegundo": 1,
+    "precio": 100,
+    "imagen": "assets/img/Horno_sin_borde.png"
+  },
+  {
+    "id": 2,
+    "nombre": "Pico automatico",
+    "bloquesPorSegundo": 5,
+    "precio": 500,
+    "imagen": "assets/img/Pico_Automatico.png"
+  },
+  {
+    "id": 3,
+    "nombre": "Maquina minera",
+    "bloquesPorSegundo": 15,
+    "precio": 2000,
+    "imagen": "assets/img/Maquina_Minera.png"
+  },
+  {
+    "id": 4,
+    "nombre": "Robot minero",
+    "bloquesPorSegundo": 50,
+    "precio": 10000,
+    "imagen": "assets/img/Robot_Minero.png"
+  },
+  {
+    "id": 5,
+    "nombre": "Mineria industrial",
+    "bloquesPorSegundo": 200,
+    "precio": 50000,
+    "imagen": "assets/img/Mineria_Industrial.png"
+  }
+]

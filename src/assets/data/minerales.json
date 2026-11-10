@@ -1,0 +1,40 @@
+
+{
+  "minerales": [
+    {
+      "id": 1,
+      "nombre": "Carbon",
+      "precio": 50,
+      "bloquesPorClick": 2,
+      "imagen": "assets/img/Carbon.png"
+    },
+    {
+      "id": 2,
+      "nombre": "Hierro",
+      "precio": 800,
+      "bloquesPorClick": 8,
+      "imagen": "assets/img/Hierro.png"
+    },
+    {
+      "id": 3,
+      "nombre": "Oro",
+      "precio": 2500,
+      "bloquesPorClick": 15,
+      "imagen": "assets/img/Oro.png"
+    },
+    {
+      "id": 4,
+      "nombre": "Diamante",
+      "precio": 8000,
+      "bloquesPorClick": 30,
+      "imagen": "assets/img/Diamante.png"
+    },
+    {
+      "id": 5,
+      "nombre": "Netherita",
+      "precio": 25000,
+      "bloquesPorClick": 60,
+      "imagen": "assets/img/Netherita.png"
+    }
+  ]
+}

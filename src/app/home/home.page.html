@@ -1,0 +1,471 @@
+<ion-content [fullscreen]="true" [class.Fondo_End]="CombateDragon">
+
+  <ion-grid>
+
+    @if (CombateDragon) {
+
+    <!-- COMBATE CONTRA EL ENDER DRAGON -->
+    <div class="Escenario_End">
+      <ion-button class="Boton_Volver" (click)="volverAlJuego()">
+        ⬅ VOLVER
+      </ion-button>
+      <!-- BARRA DE VIDA DEL DRAGÓN -->
+      <div class="Contenedor_Vida_Dragon">
+
+        <div class="Nombre_Dragon">
+          Ender Dragon
+        </div>
+
+        <div class="Barra_Vida_Dragon">
+          <div class="Vida_Dragon" [style.width.%]="(VidaDragon / VidaMaximaDragon) * 100">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- DRAGÓN -->
+      @if (!DragonDerrotado) {
+
+      <div class="Dragon">
+
+        <img src="assets/img/Ender_Dragon.png" (click)="golpearDragon($event)" draggable="false">
+
+        <!-- NÚMEROS FLOTANTES DE DAÑO -->
+        @for (numero of numerosFlotantes; track numero.id) {
+
+        <span class="Numero_Flotante" [style.left.px]="numero.x" [style.top.px]="numero.y">
+          -{{ numero.valor }}
+        </span>
+
+        }
+
+      </div>
+
+      } @else {
+
+      <!-- VICTORIA -->
+      <h1 class="Victoria_Dragon">
+        ¡HAS DERROTADO AL ENDER DRAGON!
+      </h1>
+
+      }
+
+    </div>
+
+    } @else {
+
+    <!-- HEADER -->
+    <div class="Header">
+
+      <ion-row>
+
+        <!-- TÍTULO -->
+        <ion-col size="12" size-md="3" class="Titulo">
+          <span>MINECRAFT</span>
+          <span class="Clicker">CLICKER</span>
+        </ion-col>
+
+        <!-- BLOQUES TOTALES -->
+        <ion-col size="12" size-md="4" size-lg="3" class="Espacio_Panel">
+
+          <div class="Panel">
+
+            <ion-row>
+
+              <ion-col size="4">
+                <img src="assets/img/Tierra_Minecraft.png" alt="">
+              </ion-col>
+
+              <ion-col size="8">
+
+                <ion-row class="Datos">
+                  <ion-col>Bloques totales</ion-col>
+                </ion-row>
+
+                <ion-row>
+                  <ion-col class="Bloques_totales">
+                    {{ Clicks }}
+                  </ion-col>
+                </ion-row>
+
+              </ion-col>
+
+            </ion-row>
+
+          </div>
+
+        </ion-col>
+
+        <!-- BLOQUES POR CLICK -->
+        <ion-col size="6" size-md="3" size-lg="2" class="Espacio_Panel">
+
+          <div class="Panel">
+
+            <ion-row>
+
+              <ion-col size="5">
+                <img src="assets/img/Pico_de_hierro.png" alt="">
+              </ion-col>
+
+              <ion-col size="7">
+
+                <ion-row class="Datos">
+                  <ion-col>Por click</ion-col>
+                </ion-row>
+
+                <ion-row>
+                  <ion-col class="Aumentar">
+                    +{{ Multiplicador + ClicksExtras }}
+                  </ion-col>
+                </ion-row>
+
+              </ion-col>
+
+            </ion-row>
+
+          </div>
+
+        </ion-col>
+
+        <!-- GENERACIÓN AUTOMÁTICA -->
+        <ion-col size="6" size-md="2" size-lg="2" class="Espacio_Panel">
+
+          <div class="Panel">
+
+            <ion-row>
+
+              <ion-col size="5">
+                <img src="assets/img/Horno.png" alt="">
+              </ion-col>
+
+              <ion-col size="7">
+
+                <ion-row class="Datos">
+                  <ion-col>AUTOMATICO</ion-col>
+                </ion-row>
+
+                <ion-row>
+                  <ion-col class="Aumentar">
+                    +{{ BloquesPorSegundo }}/s
+                  </ion-col>
+                </ion-row>
+
+              </ion-col>
+
+            </ion-row>
+
+          </div>
+
+        </ion-col>
+
+        <ion-col size-lg="1" class="Hueco_Header"></ion-col>
+
+        <!-- PERFIL Y CONFIGURACIÓN -->
+        <ion-col size="12" size-lg="1" class="Espacio_Panel Perfil">
+
+          <div>
+
+            <ion-fab slot="fixed" vertical="top" horizontal="end">
+
+              <ion-fab-button class="Configuracion">
+              </ion-fab-button>
+
+              <ion-fab-list side="start">
+
+                <!-- REINICIAR PARTIDA -->
+                <ion-fab-button class="Boton_Opcion" (click)="reiniciarPartida()">
+                  <img src="assets/img/Reiniciar.png">
+                </ion-fab-button>
+
+                <!-- ACTIVAR O DESACTIVAR MÚSICA -->
+                <ion-fab-button class="Boton_Opcion" (click)="alternarMusica()">
+                  <img src="assets/img/Musica.png">
+                </ion-fab-button>
+
+              </ion-fab-list>
+
+            </ion-fab>
+
+          </div>
+
+        </ion-col>
+
+      </ion-row>
+
+    </div>
+
+
+    <!-- MENÚ IZQUIERDO Y BLOQUE CENTRAL -->
+    <div class="Menu_Izquierdo">
+
+      <ion-row class="Zona_Juego">
+
+        <!-- MENÚ IZQUIERDO -->
+        <ion-col size="12" size-md="4" size-lg="3" class="Columna_Menu">
+
+          <ion-row>
+
+            <ion-col size="10" class="Espacio"></ion-col>
+
+            <ion-col size="10">
+
+              <div class="Panel">
+
+                <!-- PICOS -->
+                <ion-row class="Panel_interactivo" (click)="categoria = 'picos'">
+
+                  <ion-col size="4">
+                    <img src="assets/img/Pico_de_hierro.png" alt="">
+                  </ion-col>
+
+                  <ion-col size="8">PICOS</ion-col>
+
+                </ion-row>
+
+                <!-- MINERALES -->
+                <ion-row class="Panel_interactivo" (click)="categoria = 'minerales'">
+
+                  <ion-col size="4">
+                    <img src="assets/img/Diamante.png" alt="">
+                  </ion-col>
+
+                  <ion-col size="8">MINERALES</ion-col>
+
+                </ion-row>
+
+                <!-- AUTOMÁTICO -->
+                <ion-row class="Panel_interactivo" (click)="categoria = 'automatico'">
+
+                  <ion-col size="4">
+                    <img src="assets/img/Horno.png" alt="">
+                  </ion-col>
+
+                  <ion-col size="8">AUTOMATICO</ion-col>
+
+                </ion-row>
+
+              </div>
+
+            </ion-col>
+
+            <ion-col size="10" class="Espacio"></ion-col>
+
+          </ion-row>
+
+        </ion-col>
+
+
+        <!-- BLOQUE CENTRAL -->
+        <ion-col size="12" size-md="8" size-lg="6" class="Bloque">
+
+          <!-- IMAGEN DEL BLOQUE -->
+          <img [src]="imagenBloqueActual" (click)="contarClicks($event)" draggable="false">
+
+          <!-- NÚMEROS FLOTANTES -->
+          @for (numero of numerosFlotantes; track numero.id) {
+
+          <span class="Numero_Flotante" [style.left.px]="numero.x" [style.top.px]="numero.y">
+            +{{ numero.valor }}
+          </span>
+
+          }
+
+        </ion-col>
+
+
+        <!-- TIENDA DERECHA -->
+        <ion-col size="12" size-lg="3" class="Tienda">
+
+          <ion-card class="Panel_Tienda">
+
+            <ion-card-header>
+              <ion-card-title class="Titulo_Tienda">
+                TIENDA
+              </ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+
+              <!-- CATEGORÍA ACTUAL -->
+              <h3 class="Categoria_Tienda">
+                {{ categoria == 'picos' ? 'PICOS' : categoria == 'minerales' ? 'MINERALES' : 'AUTOMÁTICO' }}
+              </h3>
+
+              <ion-list class="Lista_Tienda">
+
+                <!-- PRODUCTOS AUTOMÁTICOS -->
+                @if (categoria == 'automatico') {
+
+                @for (producto of automatico; track producto.id) {
+
+                <ion-item class="Producto_Tienda" lines="none">
+
+                  <ion-thumbnail slot="start">
+                    <img [src]="producto.imagen">
+                  </ion-thumbnail>
+
+                  <ion-label>
+                    <h2>{{ producto.nombre }}</h2>
+                    <p>+{{ producto.bloquesPorSegundo }} bloques por segundo</p>
+                  </ion-label>
+
+                  <ion-button slot="end" class="Boton_Comprar"
+                    [disabled]="estaComprado('automatico', producto.id) || Clicks < producto.precio"
+                    (click)="comprarItem('automatico', producto)">
+
+                    @if (estaComprado('automatico', producto.id)) {
+                    COMPRADO
+                    } @else {
+                    <img src="assets/img/Tierra_Minecraft.png">
+                    {{ producto.precio }}
+                    }
+
+                  </ion-button>
+
+                </ion-item>
+
+                }
+
+                } @else {
+
+                <!-- PICOS Y MINERALES -->
+                @for (producto of (categoria == 'picos' ? picos : minerales); track producto.id) {
+
+                <ion-item class="Producto_Tienda" lines="none">
+
+                  <ion-thumbnail slot="start">
+                    <img [src]="producto.imagen">
+                  </ion-thumbnail>
+
+                  <ion-label>
+                    <h2>{{ producto.nombre }}</h2>
+                    <p>+{{ producto.bloquesPorClick }} bloques por clic</p>
+                  </ion-label>
+
+                  <ion-button slot="end" class="Boton_Comprar"
+                    [disabled]="estaComprado(categoria, producto.id) || Clicks < producto.precio"
+                    (click)="comprarItem(categoria, producto)">
+
+                    @if (estaComprado(categoria, producto.id)) {
+                    COMPRADO
+                    } @else {
+                    <img src="assets/img/Tierra_Minecraft.png">
+                    {{ producto.precio }}
+                    }
+
+                  </ion-button>
+
+                </ion-item>
+
+                }
+
+                }
+
+              </ion-list>
+
+            </ion-card-content>
+
+          </ion-card>
+
+        </ion-col>
+
+      </ion-row>
+
+
+      <!-- PARTE DE ABAJO -->
+      <div class="Parte_de_debajo">
+
+        <ion-row>
+
+          <!-- ESTADÍSTICAS -->
+          <ion-col size="12" size-md="5" size-lg="3" class="Panel Panel_Estadisticas">
+
+            <ion-row class="Estadisticas">
+              <ion-col>ESTADISTICAS</ion-col>
+            </ion-row>
+
+            <ion-row class="Estadisticas">
+              <ion-col size="7">BLOQUES MINADOS</ion-col>
+              <ion-col size="5" class="Valor">
+                {{ BloquesMinados }}
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="Estadisticas">
+              <ion-col size="7">CLICKS REALIZADOS</ion-col>
+              <ion-col size="5" class="Valor">
+                {{ ClicksTotales }}
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="Estadisticas">
+              <ion-col size="7">TIEMPO DE JUEGO</ion-col>
+              <ion-col size="5" class="Valor">
+                {{ Horas }}H {{ Minutos }}M {{ Segundos }}S
+              </ion-col>
+            </ion-row>
+
+          </ion-col>
+
+
+          <!-- INFORMACIÓN DEL BLOQUE ACTUAL -->
+          <ion-col size="12" size-md="7" size-lg="6" class="Info_Bloque">
+
+            <ion-row class="Caja_Bloque" [class.Panel]="!DragonDesbloqueado">
+
+              <ion-col>
+
+                <ion-row>
+
+                  <!-- BOTÓN PARA ENFRENTARSE AL DRAGÓN -->
+                  @if (DragonDesbloqueado && !CombateDragon) {
+
+                  <ion-button class="Boton_Dragon" (click)="iniciarCombateDragon()">
+
+                    <span>ENFRENTARSE AL ENDER DRAGON</span>
+
+                  </ion-button>
+
+                  } @else {
+
+                  <ion-col size="2" class="Imagen_Actual">
+                    <img [src]="imagenBloqueActual">
+                  </ion-col>
+
+                  <ion-col size="10">
+
+                    <ion-row>
+                      <ion-col>BLOQUE ACTUAL</ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                      <ion-col>{{ nombreBloqueActual.toUpperCase() }}</ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                      <ion-col>{{ bloquesBloqueActual }}+ BLOQUE BASE POR CLICK</ion-col>
+                    </ion-row>
+
+                  </ion-col>
+
+                  }
+
+                </ion-row>
+
+              </ion-col>
+
+            </ion-row>
+
+          </ion-col>
+
+        </ion-row>
+
+      </div>
+
+    </div>
+
+    }
+
+  </ion-grid>
+
+</ion-content>

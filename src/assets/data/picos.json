@@ -1,0 +1,47 @@
+
+{
+  "picos": [
+    {
+      "id": 1,
+      "nombre": "Pico de madera",
+      "precio": 20,
+      "bloquesPorClick": 2,
+      "imagen": "assets/img/Pico_de_madera.png"
+    },
+    {
+      "id": 2,
+      "nombre": "Pico de piedra",
+      "precio": 100,
+      "bloquesPorClick": 3,
+      "imagen": "assets/img/Pico_de_piedra.png"
+    },
+    {
+      "id": 3,
+      "nombre": "Pico de hierro",
+      "precio": 500,
+      "bloquesPorClick": 5,
+      "imagen": "assets/img/Pico_de_hierro.png"
+    },
+    {
+      "id": 4,
+      "nombre": "Pico de oro",
+      "precio": 1500,
+      "bloquesPorClick": 10,
+      "imagen": "assets/img/Pico_de_oro.png"
+    },
+    {
+      "id": 5,
+      "nombre": "Pico de diamante",
+      "precio": 5000,
+      "bloquesPorClick": 20,
+      "imagen": "assets/img/Pico_de_diamante.png"
+    },
+    {
+      "id": 6,
+      "nombre": "Pico de netherita",
+      "precio": 20000,
+      "bloquesPorClick": 50,
+      "imagen": "assets/img/Pico_de_netherita.png"
+    }
+  ]
+}

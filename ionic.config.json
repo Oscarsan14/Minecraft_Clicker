@@ -1,0 +1,7 @@
+{
+  "name": "minecraft_clicker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
